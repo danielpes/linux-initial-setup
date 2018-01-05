@@ -2,7 +2,7 @@
 
 DOWNLOADS_DIR=$HOME/Downloads
 REPO=$HOME/git/ubuntu-init
-DATA_DIR=$HOME/data
+DATA_DIR=$REPO/data
 CONFIG_DIR=$DATA_DIR/config
 
 #### Directories ####

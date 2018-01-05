@@ -1,8 +1,8 @@
 #!/bin/sh
 
 DOWNLOADS_DIR=$HOME/Downloads
-REPO = $HOME/git/ubuntu-init
-DATA_DIR = $HOME/data
+REPO=$HOME/git/ubuntu-init
+DATA_DIR=$HOME/data
 CONFIG_DIR=$DATA_DIR/config
 
 #### Directories ####
@@ -24,38 +24,7 @@ sudo apt-get install -y apt-transport-https build-essential curl terminator vim 
 # Add repositories and keys
 echo "Adding repositories and keys..."
 sudo add-apt-repository -y ppa:snwh/pulp # Paper themes
-curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash gsettings set com.ubuntu.update-manager show-details true
-gsettings set com.ubuntu.update-manager first-run false
-gsettings set org.gnome.desktop.default-applications.terminal exec-arg '--new-tab'
-gsettings set org.gnome.desktop.default-applications.terminal exec 'terminator'
-gsettings set org.gnome.settings-daemon.plugins.media-keys home '<Super>e'
-gsettings set org.gnome.settings-daemon.plugins.media-keys terminal '<Super>t'
-gsettings set org.yorba.shotwell.preferences.ui show-welcome-dialog false
-gsettings set org.gnome.desktop.interface cursor-theme 'Paper'
-gsettings set org.gnome.desktop.interface icon-theme 'Paper'
-gsettings set org.gnome.desktop.interface gtk-theme 'Arc-Darker'
-gsettings set org.gnome.desktop.interface clock-show-date true
-gsettings set org.gnome.shell enabled-extensions "['user-theme@gnome-shell-extensions.gcampax.github.com', 'mediaplayer@patapon.info', 'panel-osd@berend.de.schouwer.gmail.com', 'system-monitor@paradoxxx.zero.gmail.com']"
-gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'google-chrome.desktop', 'terminator.desktop', 'spotify.desktop', 'franz.desktop', 'org.gnome.Software.desktop']"
-gsettings set org.gnome.desktop.screensaver primary-color '#000000'
-gsettings set org.gnome.desktop.screensaver secondary-color '#000000'
-gsettings set org.gnome.desktop.screensaver picture-uri 'file:///usr/share/backgrounds/Planking_is_going_against_the_grain_by_mendhak.jpg'
-gsettings set org.gnome.FileRoller.Listing show-path false
-gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-down "['<Super>w']"
-gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-up "['<Shift><Super>q']"
-gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-down "['<Shift><Super>w']"
-gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-up "['<Super>q']"
-gsettings set org.gnome.desktop.background secondary-color '#000000'
-gsettings set org.gnome.desktop.background primary-color '#000000'
-gsettings set org.gnome.desktop.background picture-uri 'file:///usr/share/backgrounds/Lighthouse_at_sunrise_by_Frenchie_Smalls.jpg'
-gsettings set org.gnome.desktop.calendar show-weekdate true
-gsettings set org.gnome.desktop.datetime automatic-timezone true
-gsettings set org.gnome.nautilus.preferences default-folder-viewer 'list-view'
-gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 32
-gsettings set org.gnome.shell.extensions.dash-to-dock dock-position 'BOTTOM'
-gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed false-  # Node.js
-curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg # VS Code
-sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg # VS Code
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash # VS Code
 echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" | sudo tee /etc/apt/sources.list.d/vscode.list # VS Code
 
 # Update apt

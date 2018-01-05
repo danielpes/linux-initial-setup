@@ -22,10 +22,11 @@ sudo apt-get install -y apt-transport-https build-essential curl terminator vim 
 
 # Add repositories and keys
 echo "Adding repositories and keys..."
-wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add - # Sublime-text
-echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list# Sublime-text
 sudo add-apt-repository -y ppa:snwh/pulp # Paper themes
 curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -  # Node.js
+curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg # VS Code
+sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg # VS Code
+echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" | sudo tee /etc/apt/sources.list.d/vscode.list # VS Code
 
 # Update apt
 sudo apt-get -y --force-yes update
@@ -36,6 +37,7 @@ sudo apt-get install -y \
 	adobe-flashplugin \
 	arc-theme \
 	build-essential \
+	code \
 	gconf2 \
 	gir1.2-gtop-2.0  \
 	gir1.2-networkmanager-1.0 \
@@ -44,8 +46,7 @@ sudo apt-get install -y \
 	openjdk-8-jdk \
 	paper-cursor-theme \
 	paper-icon-theme \
-	ruby-full \
-	sublime-text
+	ruby-full
 
 # Google Chrome
 echo "Installing Google Chrome..."
@@ -99,9 +100,8 @@ sudo cp $CONFIG_DIR/zsh/zprofile /etc/zsh/zprofile
 mkdir ~/.config/terminator/
 cp -R $CONFIG_DIR/terminator/* $HOME/.config/terminator/
 
-# Sublime text 3
-mkdir ~/.config/sublime-text-3/
-unzip -d ~/.config/sublime-text-3/ $CONFIG_DIR/sublime-text-3.zip
+# VS Code
+unzip -d ~/.config/Code/User $CONFIG_DIR/vscode-user.zip
 
 # JetBrains
 cp $CONFIG_DIR/intellij.jar $HOME/config/intellij.jar
@@ -111,7 +111,6 @@ cp $CONFIG_DIR/webstorm.jar $HOME/config/webstorm.jar
 #### Enviornment Configuration ####
 
 # TODO: Add gsettings and dconf commands
-
 
 #### Requires interaction ####
 

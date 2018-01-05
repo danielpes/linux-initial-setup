@@ -6,7 +6,7 @@ CONFIG_DIR=$REPO/data/config
 
 #### Directories ####
 echo "Preparing directories..."
-rm -r $HOME/Desktop $HOME/Public $HOME/Templates
+rm -r $HOME/Public $HOME/Templates
 mkdir $HOME/apps
 mkdir $HOME/config
 mkdir $HOME/git
@@ -123,6 +123,6 @@ sudo apt-get install -y ubuntu-restricted-extras
 echo ""
 echo ""
 echo "===================="
-echo " TIME FOR A REBOOT! "
+echo " REBOOT! "
 echo "===================="
 echo ""

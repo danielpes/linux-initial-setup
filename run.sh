@@ -80,8 +80,8 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 # Final steps
 echo "Running final steps..."
 sudo dpkg --configure -a
-sudo apt-get install -f
-sudo apt-get -y --force-yes upgrade
+sudo apt-get --fix-broken install -y
+sudo apt-get -y upgrade
 
 #### Apps Configuration ####
 

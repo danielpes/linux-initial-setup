@@ -24,7 +24,9 @@ sudo apt-get install -y apt-transport-https build-essential curl terminator vim 
 # Add repositories and keys
 echo "Adding repositories and keys..."
 sudo add-apt-repository -y ppa:snwh/pulp # Paper themes
-curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash # VS Code
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash # Node.js		
+curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg # VS Code		
+sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg # VS Code
 echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" | sudo tee /etc/apt/sources.list.d/vscode.list # VS Code
 
 # Update apt

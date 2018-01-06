@@ -24,7 +24,6 @@ sudo apt-get install -y apt-transport-https build-essential curl terminator vim 
 # Add repositories and keys
 echo "Adding repositories and keys..."
 sudo add-apt-repository -y ppa:snwh/pulp # Paper themes
-curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash # Node.js		
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg # VS Code		
 sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg # VS Code
 echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" | sudo tee /etc/apt/sources.list.d/vscode.list # VS Code
@@ -47,12 +46,20 @@ sudo apt-get install -y \
 	gconf2 \
 	gir1.2-gtop-2.0  \
 	gir1.2-networkmanager-1.0 \
+	libssl-dev \
 	nautilus-actions \
-	nodejs \
 	openjdk-8-jdk \
 	paper-cursor-theme \
 	paper-icon-theme \
 	ruby-full
+
+# nvm and node
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | zsh
+
+# npm global packages
+npm install -g express-generator
+npm install -g create-react-app
+npm install -g typescript
 
 # Google Chrome
 echo "Installing Google Chrome..."

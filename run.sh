@@ -12,6 +12,7 @@ CONFIG_DIR=$DATA_DIR/config
 echo "===> Preparing home directories..."
 rm -r $HOME/Public $HOME/Templates
 mkdir $HOME/apps
+mkdir $HOME/config
 mkdir $HOME/misc
 cd $REPO
 
@@ -62,6 +63,10 @@ fc-cache -f
 
 # nvm and node
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+nvm install node
 
 # npm global packages
 npm install -g express-generator
@@ -73,7 +78,7 @@ sudo gem install sass --no-user-install
 
 # Gnome Extensions
 echo "===> Downloading extensions..."
-wget -O $DOWNLOADS_DIR/user-themes.zip "https://extensions.gnome.org/download-extension/panel-osd@berend.de.schouwer.gmail.com.shell-extension.zip?version_tag=7569"
+wget -O $DOWNLOADS_DIR/user-themes.zip "/download-extension/user-theme@gnome-shell-extensions.gcampax.github.com.shell-extension.zip?version_tag=7480"
 wget -O $DOWNLOADS_DIR/media-player.zip "https://extensions.gnome.org/download-extension/mediaplayer@patapon.info.shell-extension.zip?version_tag=7663"
 wget -O $DOWNLOADS_DIR/system-monitor.zip "https://extensions.gnome.org/download-extension/system-monitor@paradoxxx.zero.gmail.com.shell-extension.zip?version_tag=6808"
 wget -O $DOWNLOADS_DIR/panel-osd.zip "https://extensions.gnome.org/download-extension/panel-osd@berend.de.schouwer.gmail.com.shell-extension.zip?version_tag=7569"
@@ -119,9 +124,16 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 
 # Final steps
 echo "===> Running final steps..."
-sudo dpkg --configure -a
 sudo apt-get --fix-broken install -y
 sudo apt-get -y upgrade
+sudo dpkg --configure -a
+
+#### Remaining Fonts ####
+
+echo "===> Installing remaining fonts..."
+mkdir $HOME/.local/share/fonts/
+cp $DATA_DIR/fonts/* $HOME/.local/share/fonts/
+fc-cache -f
 
 #### Apps Configuration ####
 
@@ -146,8 +158,8 @@ cp -R $CONFIG_DIR/terminator/* $HOME/.config/terminator/
 unzip -o $CONFIG_DIR/vscode/User.zip -d ~/.config/Code/User/
 
 # JetBrains
-cp $CONFIG_DIR/intellij.jar $HOME/config/intellij.jar
-cp $CONFIG_DIR/webstorm.jar $HOME/config/webstorm.jar
+cp $CONFIG_DIR/intellij.jar $HOME/config/
+cp $CONFIG_DIR/webstorm.jar $HOME/config/
 
 # Extensions
 for p in $CONFIG_DIR/extensions/*/ ; do
@@ -157,13 +169,6 @@ for p in $CONFIG_DIR/extensions/*/ ; do
     echo "copying from $src_path to $dst_path"
     cp $src_path/* $dst_path/
 done
-
-#### Fonts ####
-
-echo "===> Installing remaining fonts..."
-mkdir $HOME/.local/share/fonts/
-cp $DATA_DIR/fonts/* $HOME/.local/share/fonts/
-fc-cache -f
 
 #### Enviornment Configuration ####
 

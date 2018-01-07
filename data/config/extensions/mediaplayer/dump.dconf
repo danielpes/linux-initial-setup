@@ -1,0 +1,8 @@
+[/]
+status-text='  {trackArtist} - {trackTitle}'
+indicator-position='right'
+playstatus=false
+hide-aggindicator=false
+button-icon-style='circular'
+hide-stockmpris=false
+status-size=280

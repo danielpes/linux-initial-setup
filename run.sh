@@ -78,7 +78,7 @@ sudo gem install sass --no-user-install
 
 # Gnome Extensions
 echo "===> Downloading extensions..."
-wget -O $DOWNLOADS_DIR/user-themes.zip "/download-extension/user-theme@gnome-shell-extensions.gcampax.github.com.shell-extension.zip?version_tag=7480"
+wget -O $DOWNLOADS_DIR/user-themes.zip "https://extensions.gnome.org/download-extension/user-theme@gnome-shell-extensions.gcampax.github.com.shell-extension.zip?version_tag=7480"
 wget -O $DOWNLOADS_DIR/media-player.zip "https://extensions.gnome.org/download-extension/mediaplayer@patapon.info.shell-extension.zip?version_tag=7663"
 wget -O $DOWNLOADS_DIR/system-monitor.zip "https://extensions.gnome.org/download-extension/system-monitor@paradoxxx.zero.gmail.com.shell-extension.zip?version_tag=6808"
 wget -O $DOWNLOADS_DIR/panel-osd.zip "https://extensions.gnome.org/download-extension/panel-osd@berend.de.schouwer.gmail.com.shell-extension.zip?version_tag=7569"
@@ -139,12 +139,15 @@ fc-cache -f
 
 echo "===> Copying configuration files..."
 
+# Git
+cp $CONFIG_DIR/git/.gitconfig ~/.gitconfig
+
 # Pure Theme (ZSH)
 PURE_DIR=$HOME/.local/share/pure-zsh
 mkdir $PURE_DIR
 cp $DATA_DIR/pure-zsh/* $PURE_DIR/
+sudo ln -s "$PURE_DIR/pure.zsh" /usr/local/share/zsh/site-functions/prompt_pure_setup
 sudo ln -s "$PURE_DIR/async.zsh" /usr/local/share/zsh/site-functions/async
-sudo ln -s "$PURE_DIR/pure.zsh" /usr/local/share/zsh/site-functions/pure
 
 # Zsh / Oh-My-Zsh
 cp $CONFIG_DIR/zsh/zshrc $HOME/.zshrc
@@ -164,10 +167,9 @@ cp $CONFIG_DIR/webstorm.jar $HOME/config/
 # Extensions
 for p in $CONFIG_DIR/extensions/*/ ; do
     dirname=`basename "$p"`
-    src_path=$p
-    dst_path=$HOME/.local/share/gnome-shell/extensions/$dirname
-    echo "copying from $src_path to $dst_path"
-    cp $src_path/* $dst_path/
+    echo "===> Configuring extension $dirname..."
+    dconf_path="/org/gnome/shell/extensions/$dirname/"
+    cat $p/dump.dconf | dconf load $dconf_path
 done
 
 #### Enviornment Configuration ####
@@ -175,6 +177,7 @@ done
 echo "===> Configuring gsettings..."
 gsettings set com.ubuntu.update-manager first-run false
 gsettings set com.ubuntu.update-manager show-details true
+gsettings set org.gnome.shell enabled-extensions "['user-theme@gnome-shell-extensions.gcampax.github.com', 'mediaplayer@patapon.info', 'panel-osd@berend.de.schouwer.gmail.com', 'system-monitor@paradoxxx.zero.gmail.com']"
 gsettings set org.gnome.desktop.background picture-uri 'file:///usr/share/backgrounds/Lighthouse_at_sunrise_by_Frenchie_Smalls.jpg'
 gsettings set org.gnome.desktop.background primary-color '#000000'
 gsettings set org.gnome.desktop.background secondary-color '#000000'
@@ -199,7 +202,6 @@ gsettings set org.gnome.desktop.wm.preferences titlebar-font 'Lato 11'
 gsettings set org.gnome.nautilus.preferences default-folder-viewer 'list-view'
 gsettings set org.gnome.settings-daemon.plugins.media-keys home '<Super>e'
 gsettings set org.gnome.settings-daemon.plugins.media-keys terminal '<Super>t'
-gsettings set org.gnome.shell enabled-extensions "['user-theme@gnome-shell-extensions.gcampax.github.com', 'mediaplayer@patapon.info', 'panel-osd@berend.de.schouwer.gmail.com', 'system-monitor@paradoxxx.zero.gmail.com']"
 gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'google-chrome.desktop', 'terminator.desktop', 'spotify.desktop', 'franz.desktop', 'org.gnome.Software.desktop']"
 gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 32
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed false

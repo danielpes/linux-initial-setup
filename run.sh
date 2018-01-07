@@ -72,14 +72,17 @@ sudo gem install sass --no-user-install
 
 # Gnome Extensions
 echo "===> Downloading extensions..."
+wget -O $DOWNLOADS_DIR/user-themes.zip "https://extensions.gnome.org/download-extension/panel-osd@berend.de.schouwer.gmail.com.shell-extension.zip?version_tag=7569"
 wget -O $DOWNLOADS_DIR/media-player.zip "https://extensions.gnome.org/download-extension/mediaplayer@patapon.info.shell-extension.zip?version_tag=7663"
 wget -O $DOWNLOADS_DIR/system-monitor.zip "https://extensions.gnome.org/download-extension/system-monitor@paradoxxx.zero.gmail.com.shell-extension.zip?version_tag=6808"
 wget -O $DOWNLOADS_DIR/panel-osd.zip "https://extensions.gnome.org/download-extension/panel-osd@berend.de.schouwer.gmail.com.shell-extension.zip?version_tag=7569"
 
-mkdir -p "$HOME/.local/share/gnome-shell/extensions/apanel-osd@berend.de.schouwer.gmail.com"
+mkdir -p "$HOME/.local/share/gnome-shell/extensions/user-theme@gnome-shell-extensions.gcampax.github.com"
+mkdir -p "$HOME/.local/share/gnome-shell/extensions/mediaplayer@patapon.info"
 mkdir -p "$HOME/.local/share/gnome-shell/extensions/system-monitor@paradoxxx.zero.gmail.com"
 mkdir -p "$HOME/.local/share/gnome-shell/extensions/panel-osd@berend.de.schouwer.gmail.com"
 
+unzip -o $DOWNLOADS_DIR/user-themes.zip -d "$HOME/.local/share/gnome-shell/extensions/user-theme@gnome-shell-extensions.gcampax.github.com"
 unzip -o $DOWNLOADS_DIR/media-player.zip -d "$HOME/.local/share/gnome-shell/extensions/mediaplayer@patapon.info"
 unzip -o $DOWNLOADS_DIR/system-monitor.zip -d "$HOME/.local/share/gnome-shell/extensions/system-monitor@paradoxxx.zero.gmail.com"
 unzip -o $DOWNLOADS_DIR/panel-osd.zip -d "$HOME/.local/share/gnome-shell/extensions/panel-osd@berend.de.schouwer.gmail.com"
@@ -157,6 +160,7 @@ done
 #### Fonts ####
 
 echo "===> Installing remaining fonts..."
+mkdir $HOME/.local/share/fonts/
 cp $DATA_DIR/fonts/* $HOME/.local/share/fonts/
 fc-cache -f
 

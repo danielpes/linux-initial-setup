@@ -34,27 +34,27 @@ sudo apt-get -y --force-yes update
 # Install everything apt
 echo "Runnning main apt-get install..."
 sudo apt-get install -y \
-	adobe-flashplugin \
-	arc-theme \
-	build-essential \
-	code \
-	fonts-firacode \
-	fonts-inconsolata \
-	fonts-lato \
-	fonts-open-sans \
-	fonts-roboto \
-	gconf2 \
-	gir1.2-gtop-2.0  \
-	gir1.2-networkmanager-1.0 \
-	libssl-dev \
-	nautilus-actions \
-	openjdk-8-jdk \
-	paper-cursor-theme \
-	paper-icon-theme \
-	ruby-full
+    adobe-flashplugin \
+    arc-theme \
+    build-essential \
+    code \
+    fonts-firacode \
+    fonts-inconsolata \
+    fonts-lato \
+    fonts-open-sans \
+    fonts-roboto \
+    gconf2 \
+    gir1.2-gtop-2.0  \
+    gir1.2-networkmanager-1.0 \
+    libssl-dev \
+    nautilus-actions \
+    openjdk-8-jdk \
+    paper-cursor-theme \
+    paper-icon-theme \
+    ruby-full
 
 # nvm and node
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | zsh
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
 
 # npm global packages
 npm install -g express-generator
@@ -101,12 +101,12 @@ sudo apt-get -y upgrade
 # Pure Theme (ZSH)
 PURE_DIR=$HOME/.local/share/pure-zsh
 mkdir $PURE_DIR
-cp $CONFIG_DIR/pure/* $PURE_DIR/
+cp $DATA_DIR/pure-zsh/* $PURE_DIR/
 sudo ln -s "$PURE_DIR/async.zsh" /usr/local/share/zsh/site-functions/async
-sudo ln -s "$PURE_DIR/pure.zsh" /usr/local/share/zsh/site-functions/async
+sudo ln -s "$PURE_DIR/pure.zsh" /usr/local/share/zsh/site-functions/pure
 
 # Zsh / Oh-My-Zsh
-cp $CONFIG_DIR/zsh/.zshrc $HOME/.zshrc
+cp $CONFIG_DIR/zsh/zshrc $HOME/.zshrc
 sudo cp $CONFIG_DIR/zsh/zprofile /etc/zsh/zprofile
 
 # Terminator
@@ -114,11 +114,20 @@ mkdir ~/.config/terminator/
 cp -R $CONFIG_DIR/terminator/* $HOME/.config/terminator/
 
 # VS Code
-unzip -d ~/.config/Code/User $CONFIG_DIR/vscode-user.zip
+unzip -o -d ~/.config/Code/User/ $CONFIG_DIR/vscode/User.zip
 
 # JetBrains
 cp $CONFIG_DIR/intellij.jar $HOME/config/intellij.jar
 cp $CONFIG_DIR/webstorm.jar $HOME/config/webstorm.jar
+
+# Extensions
+for p in $CONFIG_DIR/extensions/*/ ; do
+    dirname=`basename "$p"`
+    src_path=$p
+    dst_path=$HOME/.local/share/gnome-shell/extensions/$dirname
+    echo "copying from $src_path to $dst_path"
+    cp $src_path/* $dst_path/
+done
 
 #### Fonts ####
 

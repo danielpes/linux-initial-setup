@@ -1,0 +1,51 @@
+[global_config]
+  inactive_color_offset = 0.57
+  suppress_multiple_term_dialog = True
+  title_transmit_bg_color = "#3465a4"
+[keybindings]
+  split_horiz = <Shift><Alt>d
+  split_vert = <Alt>d
+[layouts]
+  [[default]]
+    [[[child0]]]
+      fullscreen = False
+      last_active_term = 5b59c80c-8c46-4ff4-aaf8-89f564a8efc4
+      last_active_window = True
+      maximised = False
+      order = 0
+      parent = ""
+      position = 23:15
+      size = 738, 1025
+      title = ~/Documents
+      type = Window
+    [[[child1]]]
+      order = 0
+      parent = child0
+      position = z
+      ratio = 0.5
+      type = VPaned
+    [[[terminal2]]]
+      order = 0
+      parent = child1
+      profile = default
+      type = Terminal
+      uuid = 5b59c80c-8c46-4ff4-aaf8-89f564a8efc4
+    [[[terminal3]]]
+      order = 1
+      parent = child1
+      profile = default
+      type = Terminal
+      uuid = 2311b7e1-15ee-4c42-b6b9-67220d33eefe
+[plugins]
+[profiles]
+  [[default]]
+    background_color = "#001e27"
+    background_darkness = 0.9
+    background_type = transparent
+    copy_on_selection = True
+    cursor_color = "#f34b00"
+    font = Fira Mono 11
+    foreground_color = "#9cc2c3"
+    palette = "#002831:#d11c24:#6cbe6c:#a57706:#2176c7:#c61c6f:#259286:#eae3cb:#006488:#f5163b:#51ef84:#b27e28:#178ec8:#e24d8e:#00b39e:#fcf4dc"
+    scrollback_infinite = True
+    use_system_font = False

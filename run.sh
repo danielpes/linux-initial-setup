@@ -19,18 +19,20 @@ cd $REPO
 
 # Basic tools
 echo "===> Installing basic tools..."
-sudo apt-get -y --force-yes update
+sudo apt-get update
 sudo apt-get install -y apt-transport-https build-essential curl terminator vim zsh
+sudo apt-get -y upgrade
 
 # Add repositories and keys
 echo "===> Adding repositories and keys..."
+sudo add-apt-repository "deb http://archive.canonical.com/ubuntu $(lsb_release -sc) partner" # Partners
 sudo add-apt-repository -y ppa:snwh/pulp # Paper themes
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg # VS Code		
 sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg # VS Code
 echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" | sudo tee /etc/apt/sources.list.d/vscode.list # VS Code
 
 # Update apt
-sudo apt-get -y --force-yes update
+sudo apt-get update
 
 # Install everything apt
 echo "===> Runnning main apt-get install..."
@@ -55,6 +57,8 @@ sudo apt-get install -y \
     paper-icon-theme \
     ruby-full
 
+fc-cache -f
+
 # nvm and node
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
 
@@ -76,9 +80,9 @@ mkdir -p "$HOME/.local/share/gnome-shell/extensions/apanel-osd@berend.de.schouwe
 mkdir -p "$HOME/.local/share/gnome-shell/extensions/system-monitor@paradoxxx.zero.gmail.com"
 mkdir -p "$HOME/.local/share/gnome-shell/extensions/panel-osd@berend.de.schouwer.gmail.com"
 
-unzip -op $DOWNLOADS_DIR/media-player.zip -d "$HOME/.local/share/gnome-shell/extensions/mediaplayer@patapon.info"
-unzip -op $DOWNLOADS_DIR/system-monitor.zip -d "$HOME/.local/share/gnome-shell/extensions/system-monitor@paradoxxx.zero.gmail.com"
-unzip -op $DOWNLOADS_DIR/panel-osd.zip -d "$HOME/.local/share/gnome-shell/extensions/panel-osd@berend.de.schouwer.gmail.com"
+unzip -o $DOWNLOADS_DIR/media-player.zip -d "$HOME/.local/share/gnome-shell/extensions/mediaplayer@patapon.info"
+unzip -o $DOWNLOADS_DIR/system-monitor.zip -d "$HOME/.local/share/gnome-shell/extensions/system-monitor@paradoxxx.zero.gmail.com"
+unzip -o $DOWNLOADS_DIR/panel-osd.zip -d "$HOME/.local/share/gnome-shell/extensions/panel-osd@berend.de.schouwer.gmail.com"
 
 # Google Chrome
 echo "===> Installing Google Chrome..."
@@ -135,7 +139,7 @@ mkdir ~/.config/terminator/
 cp -R $CONFIG_DIR/terminator/* $HOME/.config/terminator/
 
 # VS Code
-unzip -o -d ~/.config/Code/User/ $CONFIG_DIR/vscode/User.zip
+unzip -o $CONFIG_DIR/vscode/User.zip -d ~/.config/Code/User/
 
 # JetBrains
 cp $CONFIG_DIR/intellij.jar $HOME/config/intellij.jar

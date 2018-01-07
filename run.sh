@@ -50,6 +50,7 @@ sudo apt-get install -y \
     gir1.2-gtop-2.0  \
     gir1.2-networkmanager-1.0 \
     gir1.2-clutter-1.0 \
+    gnome-tweak-tool \
     libssl-dev \
     nautilus-actions \
     openjdk-8-jdk \

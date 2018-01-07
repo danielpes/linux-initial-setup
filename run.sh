@@ -63,6 +63,9 @@ npm install -g express-generator
 npm install -g create-react-app
 npm install -g typescript
 
+# Global ruby gems
+sudo gem install sass --no-user-install
+
 # Gnome Extensions
 echo "===> Downloading extensions..."
 wget -O $DOWNLOADS_DIR/media-player.zip "https://extensions.gnome.org/download-extension/mediaplayer@patapon.info.shell-extension.zip?version_tag=7663"

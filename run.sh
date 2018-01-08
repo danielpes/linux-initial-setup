@@ -156,6 +156,10 @@ sudo ln -s "$PURE_DIR/async.zsh" /usr/local/share/zsh/site-functions/async
 cp $CONFIG_DIR/zsh/zshrc $HOME/.zshrc
 sudo cp $CONFIG_DIR/zsh/zprofile /etc/zsh/zprofile
 
+# Franz (logo)
+sudo cp $DATA_DIR/images/franz-logo.svg /opt/franz/logo.svg
+sudo sed -i "s/^Icon=.*$/Icon=\/opt\/Franz\/logo.svg/" /usr/share/applications/franz.desktop
+
 # Terminator
 mkdir ~/.config/terminator/
 cp -R $CONFIG_DIR/terminator/* $HOME/.config/terminator/

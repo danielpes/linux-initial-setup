@@ -20,8 +20,8 @@ cd $REPO
 # Basic tools
 echo "===> Installing basic tools..."
 sudo apt update
+sudo apt -y full-upgrade
 sudo apt install -y apt-transport-https build-essential curl terminator vim zsh
-sudo apt -y upgrade
 
 # Add repositories and keys
 echo "===> Adding repositories and keys..."

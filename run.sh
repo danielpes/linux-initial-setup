@@ -157,7 +157,7 @@ cp $CONFIG_DIR/zsh/zshrc $HOME/.zshrc
 sudo cp $CONFIG_DIR/zsh/zprofile /etc/zsh/zprofile
 
 # Franz (logo)
-sudo cp $DATA_DIR/images/franz-logo.svg /opt/franz/logo.svg
+sudo cp $DATA_DIR/images/franz-logo.svg /opt/Franz/logo.svg
 sudo sed -i "s/^Icon=.*$/Icon=\/opt\/Franz\/logo.svg/" /usr/share/applications/franz.desktop
 
 # Terminator

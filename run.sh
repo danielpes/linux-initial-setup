@@ -41,6 +41,7 @@ sudo apt-get install -y \
     adobe-flashplugin \
     arc-theme \
     build-essential \
+    chrome-gnome-shell \
     code \
     fonts-firacode \
     fonts-inconsolata \
@@ -48,9 +49,9 @@ sudo apt-get install -y \
     fonts-open-sans \
     fonts-roboto \
     gconf2 \
+    gir1.2-clutter-1.0 \
     gir1.2-gtop-2.0  \
     gir1.2-networkmanager-1.0 \
-    gir1.2-clutter-1.0 \
     gnome-tweak-tool \
     libssl-dev \
     nautilus-actions \

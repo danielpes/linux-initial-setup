@@ -19,5 +19,13 @@
         "key": "ctrl+shift+k",
         "command": "-editor.action.deleteLines",
         "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+'",
+        "command": "workbench.action.terminal.toggleTerminal"
+    },
+    {
+        "key": "ctrl+shift+[BracketLeft]",
+        "command": "-workbench.action.terminal.toggleTerminal"
     }
 ]

@@ -9,7 +9,6 @@ CONFIG_DIR=$DATA_DIR/config
 
 #### Directories ####
 
-echo "===> Preparing home directories..."
 rm -r $HOME/Public $HOME/Templates
 mkdir $HOME/apps
 mkdir $HOME/config
@@ -33,6 +32,7 @@ sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg # VS Code
 echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" | sudo tee /etc/apt/sources.list.d/vscode.list # VS Code
 
 # Update apt
+echo "===> apt update..."
 sudo apt-get update
 
 # Install everything apt
@@ -62,6 +62,7 @@ sudo apt-get install -y \
 fc-cache -f
 
 # nvm and node
+echo "===> Installing nvm, node and npm global packages..."
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -74,6 +75,7 @@ npm install -g create-react-app
 npm install -g typescript
 
 # Global ruby gems
+echo "===> Installing ruby gems..."
 sudo gem install sass --no-user-install
 
 # Gnome Extensions
@@ -158,11 +160,11 @@ mkdir ~/.config/terminator/
 cp -R $CONFIG_DIR/terminator/* $HOME/.config/terminator/
 
 # VS Code
-unzip -o $CONFIG_DIR/vscode/User.zip -d ~/.config/Code/User/
+cp $CONFIG_DIR/vscode/* $HOME/.config/Code/User/
 
 # JetBrains
-cp $CONFIG_DIR/intellij.jar $HOME/config/
-cp $CONFIG_DIR/webstorm.jar $HOME/config/
+cp $CONFIG_DIR/jetbrains/intellij.jar $HOME/config/
+cp $CONFIG_DIR/jetbrains/webstorm.jar $HOME/config/
 
 # Extensions
 for p in $CONFIG_DIR/extensions/*/ ; do
@@ -171,6 +173,9 @@ for p in $CONFIG_DIR/extensions/*/ ; do
     dconf_path="/org/gnome/shell/extensions/$dirname/"
     cat $p/dump.dconf | dconf load $dconf_path
 done
+
+# Arc Dark Theme advanced configuration
+sudo sed -i "s/^\(\s*font-family:\).*$/\1 Lato;/" /usr/share/themes/Arc-Dark/gnome-shell/gnome-shell.css # Top bar font
 
 #### Enviornment Configuration ####
 
@@ -207,7 +212,8 @@ gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 32
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed false
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-position 'BOTTOM'
 
-sudo sed -i "s/^\(\s*font-family:\).*$/\1 Lato;/" /usr/share/themes/Arc-Dark/gnome-shell/gnome-shell.css # Top bar font
+echo "===> Configuring gconf..."
+dconf write /org/gnome/shell/extensions/user-theme/name "'Arc-Dark'"
 
 #### Requires interaction ####
 

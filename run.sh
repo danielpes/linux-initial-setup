@@ -19,9 +19,9 @@ cd $REPO
 
 # Basic tools
 echo "===> Installing basic tools..."
-sudo apt-get update
-sudo apt-get install -y apt-transport-https build-essential curl terminator vim zsh
-sudo apt-get -y upgrade
+sudo apt update
+sudo apt install -y apt-transport-https build-essential curl terminator vim zsh
+sudo apt -y upgrade
 
 # Add repositories and keys
 echo "===> Adding repositories and keys..."
@@ -33,11 +33,11 @@ echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" 
 
 # Update apt
 echo "===> apt update..."
-sudo apt-get update
+sudo apt update
 
 # Install everything apt
-echo "===> Runnning main apt-get install..."
-sudo apt-get install -y \
+echo "===> Runnning main apt install..."
+sudo apt install -y \
     adobe-flashplugin \
     arc-theme \
     build-essential \
@@ -127,8 +127,8 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 
 # Final steps
 echo "===> Running final steps..."
-sudo apt-get --fix-broken install -y
-sudo apt-get -y upgrade
+sudo apt --fix-broken install -y
+sudo apt -y upgrade
 sudo dpkg --configure -a
 
 #### Remaining Fonts ####
@@ -223,7 +223,7 @@ dconf write /org/gnome/shell/extensions/user-theme/name "'Arc-Dark'"
 #### Requires interaction ####
 
 # Ubuntu Restricted Extras
-sudo apt-get install -y ubuntu-restricted-extras
+sudo apt install -y ubuntu-restricted-extras
 
 #### Reboot ####
 echo ""

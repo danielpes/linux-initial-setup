@@ -179,8 +179,11 @@ for p in $CONFIG_DIR/extensions/*/ ; do
     cat $p/dump.dconf | dconf load $dconf_path
 done
 
-# Arc Dark Theme advanced configuration
-sudo sed -i "s/^\(\s*font-family:\).*$/\1 Lato;/" /usr/share/themes/Arc-Dark/gnome-shell/gnome-shell.css # Top bar font
+# Theme advanced configuration
+sudo cp /usr/share/gnome-shell/theme/gnome-shell.css /usr/share/gnome-shell/theme/custom.css 
+sudo ln -sf /usr/share/gnome-shell/theme/custom.css /etc/alternatives/gdm3.css
+sudo sed -i "s/^\(\s*font-family:\).*$/\1 Lato;/" /usr/share/gnome-shell/theme/custom.css # Lock screen fonts (and some other places)
+sudo sed -i "s/^\(\s*font-family:\).*$/\1 Lato;/" /usr/share/themes/Arc-Dark/gnome-shell/gnome-shell.css # Change top bar font
 
 #### Enviornment Configuration ####
 
@@ -201,9 +204,11 @@ gsettings set org.gnome.desktop.interface font-name 'Lato 11'
 gsettings set org.gnome.desktop.interface gtk-theme 'Arc-Darker'
 gsettings set org.gnome.desktop.interface icon-theme 'Paper'
 gsettings set org.gnome.desktop.interface monospace-font-name 'Fira Mono 13'
-gsettings set org.gnome.desktop.screensaver picture-uri 'file:///usr/share/backgrounds/Planking_is_going_against_the_grain_by_mendhak.jpg'
-gsettings set org.gnome.desktop.screensaver primary-color '#000000'
-gsettings set org.gnome.desktop.screensaver secondary-color '#000000'
+gsettings set org.gnome.desktop.screensaver color-shading-type 'solid'
+gsettings set org.gnome.desktop.screensaver picture-options 'wallpaper'
+gsettings set org.gnome.desktop.screensaver picture-uri 'resource:///org/gnome/shell/theme/noise-texture.png'
+gsettings set org.gnome.desktop.screensaver primary-color '#2e3436'
+gsettings set org.gnome.desktop.screensaver secondary-color '#2e3436'
 gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-down "['<Shift><Super>w']"
 gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-up "['<Shift><Super>q']"
 gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-down "['<Super>w']"

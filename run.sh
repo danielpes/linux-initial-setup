@@ -3,7 +3,7 @@
 #### Variables ####
 
 DOWNLOADS_DIR=$HOME/Downloads
-REPO=$HOME/git/ubuntu-init
+REPO=$HOME/git/ubuntu-initial-setup
 DATA_DIR=$REPO/data
 CONFIG_DIR=$DATA_DIR/config
 

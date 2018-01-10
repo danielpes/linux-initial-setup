@@ -118,7 +118,7 @@ sudo snap install spotify
 # JetBrains toolbox
 echo "===> Installing JetBrains Toolbox..."
 wget -O $DOWNLOADS_DIR/jetbrains-toolbox.tar.gz https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.6.2914.tar.gz
-tar -xf $DOWNLOADS_DIR/jetbrains-toolbox-1.6.2914.tar.gz -C $DOWNLOADS_DIR --wildcards --no-anchored 'jetbrains-toolbox' --strip-components 1
+tar -xf $DOWNLOADS_DIR/jetbrains-toolbox.tar.gz -C $DOWNLOADS_DIR --wildcards --no-anchored 'jetbrains-toolbox' --strip-components 1
 $DOWNLOADS_DIR/jetbrains-toolbox
 
 # Oh-My-Zsh

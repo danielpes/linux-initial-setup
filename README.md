@@ -1,4 +1,4 @@
-# Ubuntu Init
+# Ubuntu Initial Setup
 
 My personal script to setup a new Ubuntu installation.
 

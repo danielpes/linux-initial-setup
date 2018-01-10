@@ -165,7 +165,8 @@ mkdir ~/.config/terminator/
 cp -R $CONFIG_DIR/terminator/* $HOME/.config/terminator/
 
 # VS Code
-cp $CONFIG_DIR/vscode/* $HOME/.config/Code/User/
+mkdir -p $HOME/.config/Code/User
+cp -f $CONFIG_DIR/vscode/* $HOME/.config/Code/User/
 
 # JetBrains
 cp $CONFIG_DIR/jetbrains/intellij.jar $HOME/config/
@@ -180,9 +181,9 @@ for p in $CONFIG_DIR/extensions/*/ ; do
 done
 
 # Theme advanced configuration
-sudo cp /usr/share/gnome-shell/theme/gnome-shell.css /usr/share/gnome-shell/theme/custom.css 
-sudo ln -sf /usr/share/gnome-shell/theme/custom.css /etc/alternatives/gdm3.css
-sudo sed -i "s/^\(\s*font-family:\).*$/\1 Lato;/" /usr/share/gnome-shell/theme/custom.css # Lock screen fonts (and some other places)
+sudo mv /usr/share/gnome-shell/theme/ubuntu.css /usr/share/gnome-shell/theme/ubuntu.css.bak
+sudo cp /usr/share/gnome-shell/theme/gnome-shell.css /usr/share/gnome-shell/theme/ubuntu.css
+sudo sed -i "s/^\(\s*font-family:\).*$/\1 Lato;/" /usr/share/gnome-shell/theme/ubuntu.css # Lock screen fonts (and some other places)
 sudo sed -i "s/^\(\s*font-family:\).*$/\1 Lato;/" /usr/share/themes/Arc-Dark/gnome-shell/gnome-shell.css # Change top bar font
 
 #### Enviornment Configuration ####

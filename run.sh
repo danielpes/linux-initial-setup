@@ -56,8 +56,10 @@ sudo apt install -y \
     libssl-dev \
     nautilus-actions \
     openjdk-8-jdk \
+    openssh-server \
     paper-cursor-theme \
     paper-icon-theme \
+    pdftk \
     ruby-full
 
 fc-cache -f
@@ -80,21 +82,14 @@ echo "===> Installing ruby gems..."
 sudo gem install sass --no-user-install
 
 # Gnome Extensions
-echo "===> Downloading extensions..."
-wget -O $DOWNLOADS_DIR/user-themes.zip "https://extensions.gnome.org/download-extension/user-theme@gnome-shell-extensions.gcampax.github.com.shell-extension.zip?version_tag=7480"
-wget -O $DOWNLOADS_DIR/media-player.zip "https://extensions.gnome.org/download-extension/mediaplayer@patapon.info.shell-extension.zip?version_tag=7663"
-wget -O $DOWNLOADS_DIR/system-monitor.zip "https://extensions.gnome.org/download-extension/system-monitor@paradoxxx.zero.gmail.com.shell-extension.zip?version_tag=6808"
-wget -O $DOWNLOADS_DIR/panel-osd.zip "https://extensions.gnome.org/download-extension/panel-osd@berend.de.schouwer.gmail.com.shell-extension.zip?version_tag=7569"
-
-mkdir -p "$HOME/.local/share/gnome-shell/extensions/user-theme@gnome-shell-extensions.gcampax.github.com"
-mkdir -p "$HOME/.local/share/gnome-shell/extensions/mediaplayer@patapon.info"
-mkdir -p "$HOME/.local/share/gnome-shell/extensions/system-monitor@paradoxxx.zero.gmail.com"
-mkdir -p "$HOME/.local/share/gnome-shell/extensions/panel-osd@berend.de.schouwer.gmail.com"
-
-unzip -o $DOWNLOADS_DIR/user-themes.zip -d "$HOME/.local/share/gnome-shell/extensions/user-theme@gnome-shell-extensions.gcampax.github.com"
-unzip -o $DOWNLOADS_DIR/media-player.zip -d "$HOME/.local/share/gnome-shell/extensions/mediaplayer@patapon.info"
-unzip -o $DOWNLOADS_DIR/system-monitor.zip -d "$HOME/.local/share/gnome-shell/extensions/system-monitor@paradoxxx.zero.gmail.com"
-unzip -o $DOWNLOADS_DIR/panel-osd.zip -d "$HOME/.local/share/gnome-shell/extensions/panel-osd@berend.de.schouwer.gmail.com"
+echo "===> Installing extensions..."
+./install-gnome-extension.sh install clock-override@gnomeshell.kryogenix.org
+./install-gnome-extension.sh install dash-to-panel@jderose9.github.com
+./install-gnome-extension.sh install gnome-shell-extensions.gcampax.github.com
+./install-gnome-extension.sh install mediaplayer@patapon.info
+./install-gnome-extension.sh install nohotcorner@azuri.free.fr
+./install-gnome-extension.sh install panel-osd@berend.de.schouwer.gmail.com
+./install-gnome-extension.sh install system-monitor@paradoxxx.zero.gmail.com
 
 # Google Chrome
 echo "===> Installing Google Chrome..."
@@ -125,11 +120,21 @@ $DOWNLOADS_DIR/jetbrains-toolbox
 echo "===> Installing Oh-My-Zsh"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
+# VS Code extensions
+code --install-extension dbaeumer.vscode-eslint
+code --install-extension eg2.tslint
+code --install-extension esbenp.prettier-vscode
+code --install-extension robertohuertasm.vscode-icons
+code --install-extension xabikos.ReactSnippets
+code --install-extension zhuangtongfa.material-theme
+
 # Final steps
 echo "===> Running final steps..."
+sudo apt remove --purge gnome-shell-extension-ubuntu-dock
 sudo apt --fix-broken install -y
 sudo apt -y upgrade
 sudo dpkg --configure -a
+sudo apt -y autoremove
 
 #### Remaining Fonts ####
 
@@ -194,7 +199,7 @@ sudo sed -i "s/^\(Window.SetBackgroundBottomColor \)(0.16, 0.00, 0.12)/\1\(0.18,
 echo "===> Configuring gsettings..."
 gsettings set com.ubuntu.update-manager first-run false
 gsettings set com.ubuntu.update-manager show-details true
-gsettings set org.gnome.shell enabled-extensions "['user-theme@gnome-shell-extensions.gcampax.github.com', 'mediaplayer@patapon.info', 'panel-osd@berend.de.schouwer.gmail.com', 'system-monitor@paradoxxx.zero.gmail.com']"
+gsettings set org.gnome.shell enabled-extensions "['user-theme@gnome-shell-extensions.gcampax.github.com', 'mediaplayer@patapon.info', 'system-monitor@paradoxxx.zero.gmail.com', 'dash-to-panel@jderose9.github.com', 'clock-override@gnomeshell.kryogenix.org', 'nohotcorner@azuri.free.fr', 'panel-osd@berend.de.schouwer.gmail.com']"
 gsettings set org.gnome.desktop.background picture-uri 'file:///usr/share/backgrounds/Lighthouse_at_sunrise_by_Frenchie_Smalls.jpg'
 gsettings set org.gnome.desktop.background primary-color '#000000'
 gsettings set org.gnome.desktop.background secondary-color '#000000'
@@ -222,9 +227,6 @@ gsettings set org.gnome.nautilus.preferences default-folder-viewer 'list-view'
 gsettings set org.gnome.settings-daemon.plugins.media-keys home '<Super>e'
 gsettings set org.gnome.settings-daemon.plugins.media-keys terminal '<Super>t'
 gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'google-chrome.desktop', 'terminator.desktop', 'spotify.desktop', 'franz.desktop', 'org.gnome.Software.desktop']"
-gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 32
-gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed false
-gsettings set org.gnome.shell.extensions.dash-to-dock dock-position 'BOTTOM'
 
 echo "===> Configuring gconf..."
 dconf write /org/gnome/shell/extensions/user-theme/name "'Arc-Dark'"
@@ -238,6 +240,8 @@ sudo apt install -y ubuntu-restricted-extras
 echo ""
 echo ""
 echo "===================="
-echo " REBOOT! "
+echo " Don't forget to update .giconfig!"
+echo " Don't forget to add ssh keys and config!"
+echo " REBOOT!"
 echo "===================="
 echo ""

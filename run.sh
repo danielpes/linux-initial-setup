@@ -21,7 +21,7 @@ cd $REPO
 echo "===> Installing basic tools..."
 sudo apt update
 sudo apt -y full-upgrade
-sudo apt install -y apt-transport-https build-essential curl terminator vim zsh
+sudo apt install -y apt-transport-https build-essential gnome-shell curl terminator vim zsh
 
 # Add repositories and keys
 echo "===> Adding repositories and keys..."
@@ -184,10 +184,9 @@ done
 # Locale
 sudo update-locale LANG="en_CA.UTF-8" LANGUAGE="en_CA.UTF-8" LC_ALL="en_AU.UTF-8"
 
-# Theme advanced configuration
-sudo mv /usr/share/gnome-shell/theme/ubuntu.css /usr/share/gnome-shell/theme/ubuntu.css.bak
-sudo cp /usr/share/gnome-shell/theme/gnome-shell.css /usr/share/gnome-shell/theme/ubuntu.css
-sudo sed -i "s/^\(\s*font-family:\).*$/\1 Lato;/" /usr/share/gnome-shell/theme/ubuntu.css # Lock screen fonts (and some other places)
+# Gnome Shell theme configuration
+sudo update-alternatives --set gdm3.css /usr/share/gnome-shell/theme/gnome-shell.css
+sudo sed -i "s/^\(\s*font-family:\).*$/\1 Lato;/" /usr/share/gnome-shell/theme/gnome-shell.css # Lock screen fonts (and some other places)
 sudo sed -i "s/^\(\s*font-family:\).*$/\1 Lato;/" /usr/share/themes/Arc-Dark/gnome-shell/gnome-shell.css # Change top bar font
 
 # Plymouth theme color

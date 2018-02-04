@@ -1,0 +1,8 @@
+[/]
+menu-button-icon='System_Icon'
+enable-menu-button-arrow=false
+position-in-panel='Left'
+custom-menu-button-icon-size=32.0
+menu-keybinding=['<Super>x']
+disable-activities-hotcorner=true
+enable-menu-keybinding=true

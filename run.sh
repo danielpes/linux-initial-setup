@@ -83,6 +83,8 @@ sudo gem install sass --no-user-install
 
 # Gnome Extensions
 echo "===> Installing extensions..."
+./install-gnome-extension.sh install arc-menu@linxgem33.com
+./install-gnome-extension.sh install auto-move-windows@gnome-shell-extensions.gcampax.github.com
 ./install-gnome-extension.sh install clock-override@gnomeshell.kryogenix.org
 ./install-gnome-extension.sh install dash-to-panel@jderose9.github.com
 ./install-gnome-extension.sh install gnome-shell-extensions.gcampax.github.com

@@ -1,5 +1,3 @@
-# Ubuntu Initial Setup
+# Linux Initial Setup
 
-My personal script to setup a new Ubuntu installation.
-
-Includes a bunch of apt packages, npm global packages, fonts, dotfiles, gsettings and more.
+My personal repository to setup a new Linux installation. Includes scripts for Manjaro Gnome and Ubuntu Gnome.

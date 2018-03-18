@@ -3,7 +3,7 @@
 #### Variables ####
 
 DOWNLOADS_DIR=$HOME/Downloads
-REPO=$HOME/git/ubuntu-initial-setup
+REPO=$HOME/git/linux-initial-setup
 DATA_DIR=$REPO/data
 CONFIG_DIR=$DATA_DIR/config
 
@@ -19,7 +19,7 @@ cd $REPO
 
 # Basic
 echo "===> Basic tools..."
-sudo pacman -S --noconfirm base-devel yaourt
+sudo pacman -S --noconfirm --needed base-devel yaourt
 
 # System upgrade
 echo "===> Upgrading system..."
@@ -27,7 +27,7 @@ sudo pacman -Syu
 
 # Install everything yaourt
 echo "===> Runnning main yaourt install..."
-yaourt -S --noconfirm \
+yaourt -S --noconfirm --needed \
 	arc-gtk-theme \
 	flashplugin \
 	franz \

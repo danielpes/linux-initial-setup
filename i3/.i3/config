@@ -182,10 +182,15 @@ bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 
 # Open applications on specific workspaces
-# assign [class="Thunderbird"] $ws1
-# assign [class="Pale moon"] $ws2
-# assign [class="Pcmanfm"] $ws3
-# assign [class="Skype"] $ws5
+# Workspace 1 (Browser)
+assign [class="Google-chrome|Firefox"]     $ws1
+# Workspace 2 (Code)
+assign [class="jetbrains-idea|Code"]       $ws2
+# Workspace 3 (Versioning)
+assign [class="GitKraken"]                 $ws3
+# Workspace 4 (Chat and Spotify)
+assign [class="Spotify|Franz"]             $ws4
+for_window [class="Spotify"]   move to workspace $ws4
 
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
@@ -203,7 +208,6 @@ for_window [title="MuseScore: Play Panel"] floating enable
 for_window [class="Nitrogen"] floating enable sticky enable border normal
 for_window [class="Oblogout"] fullscreen enable
 for_window [class="octopi"] floating enable
-for_window [title="About Pale Moon"] floating enable
 for_window [class="Pamac-manager"] floating enable
 for_window [class="Pavucontrol"] floating enable
 for_window [class="qt5ct"] floating enable sticky enable border normal
@@ -215,6 +219,9 @@ for_window [class="Thus"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [class="Xfburn"] floating enable
+for_window [class="Pcmanfm|Nautilus|Thunar|Toplevel"] floating enable border normal
+for_window [title="Terminator Preferences"] floating enable border normal
+for_window [class="^.*"] border pixel 0
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
@@ -272,79 +279,6 @@ mode "resize" {
 # Lock screen
 bindsym $mod+9 exec --no-startup-id blurlock
 
-# Autostart applications
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id nitrogen --restore; sleep 1; compton -b
-#exec --no-startup-id manjaro-hello
-exec --no-startup-id nm-applet
-exec --no-startup-id xfce4-power-manager
-exec --no-startup-id pamac-tray
-exec --no-startup-id clipit
-# exec --no-startup-id blueman-applet
-# exec_always --no-startup-id sbxkb
-exec --no-startup-id start_conky_maia
-# exec --no-startup-id start_conky_green
-exec --no-startup-id xautolock -time 10 -locker blurlock
-exec_always --no-startup-id ff-theme-util
-exec_always --no-startup-id fix_xcursor
-
-# Color palette used for the terminal ( ~/.Xresources file )
-# Colors are gathered based on the documentation:
-# https://i3wm.org/docs/userguide.html#xresources
-# Change the variable name at the place you want to match the color
-# of your terminal like this:
-# [example]
-# If you want your bar to have the same background color as your 
-# terminal background change the line 362 from:
-# background #14191D
-# to:
-# background $term_background
-# Same logic applied to everything else.
-set_from_resource $term_background background
-set_from_resource $term_foreground foreground
-set_from_resource $term_color0     color0
-set_from_resource $term_color1     color1
-set_from_resource $term_color2     color2
-set_from_resource $term_color3     color3
-set_from_resource $term_color4     color4
-set_from_resource $term_color5     color5
-set_from_resource $term_color6     color6
-set_from_resource $term_color7     color7
-set_from_resource $term_color8     color8
-set_from_resource $term_color9     color9
-set_from_resource $term_color10    color10
-set_from_resource $term_color11    color11
-set_from_resource $term_color12    color12
-set_from_resource $term_color13    color13
-set_from_resource $term_color14    color14
-set_from_resource $term_color15    color15
-
-# Start i3bar to display a workspace bar (plus the system information i3status if available)
-# # bar {
-#   i3bar_command i3bar
-# 	status_command i3status
-# 	position bottom
-
-# ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
-# #	tray_output primary
-# #	tray_output eDP1
-
-# 	bindsym button4 nop
-# 	bindsym button5 nop
-# #   font xft:URWGothic-Book 11
-#         font pango:Lato 11
-# 	strip_workspace_numbers yes
-#   colors {
-#     separator #666666
-#     background #000000
-#     statusline #ffffff
-#     focused_workspace #4c7899 #285577 #ffffff
-#     active_workspace #333333 #5f676a #ffffff
-#     inactive_workspace #333333 #222222 #888888
-#     urgent_workspace #2f343a #900000 #ffffff
-#   }
-# }  
-
 # hide/unhide i3status bar
 bindsym $mod+m bar mode toggle
 
@@ -368,7 +302,7 @@ gaps outer 0
 # gaps outer all plus 5
 
 # Smart gaps (gaps used if only more than one container on the workspace)
-smart_gaps on
+#smart_gaps off
 
 # Smart borders (draw borders around container only if it is not the only container on this workspace) 
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
@@ -411,7 +345,38 @@ mode "$mode_gaps_outer" {
         bindsym Escape mode "default"
 }
 
-client.focused #4c7899 #285577 #ffffff #2e9ef4
+client.focused #4c7899 #000000 #ffffff #2e9ef4
 client.focused_inactive #333333 #5f676a #ffffff #484e50
 client.unfocused #333333 #222222 #888888 #292d2e
 client.urgent #2f343a #900000 #ffffff #900000
+
+
+# Autostart applications
+exec --no-startup-id google-chrome-stable
+exec --no-startup-id i3-msg 'workspace $ws1; exec terminator'
+exec --no-startup-id code
+exec --no-startup-id franz
+exec --no-startup-id gitkraken
+exec --no-startup-id spotify
+
+exec --no-startup-id nm-applet
+exec --no-startup-id xfce4-power-manager
+exec --no-startup-id pamac-tray
+
+
+# exec --no-startup-id blueman-applet
+# exec_always --no-startup-id sbxkb
+exec --no-startup-id start_conky_maia
+
+exec --no-startup-id xautolock -time 10 -locker blurlock
+
+exec_always --no-startup-id fix_xcursor
+
+# Set wallpaper
+exec --no-startup-id nitrogen --set-scaled ~/git/i3wm-themer/themes/Grayscale/Grayscale.png
+
+# Disable caps-lock
+exec --no-startup-id setxkbmap -option caps:none
+
+# Polybar
+exec_always --no-startup-id "killall polybar;polybar -r main"

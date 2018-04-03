@@ -19,11 +19,7 @@ getTitle() {
     icon=""
   fi
 
-  output=$(echo "$icon   ${*:-%artist% - %title%}" | sed "s/%artist%/$artist/g;s/%title%/$title/g"i | sed 's/\+/\&/g')
-  if [ ${#output} -gt 50 ]; then
-    output=$(echo "$(echo "$output" | cut -b '1-47')...")
-  fi
-  echo "$output"
+  echo "$icon   ${*:-%artist% - %title%}" | sed "s/%artist%/$artist/g;s/%title%/$title/g"i | sed 's/\+/\&/g'
 }
 
 isPlaying() {

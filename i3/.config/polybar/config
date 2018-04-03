@@ -1,15 +1,8 @@
-;-------------------------------------------------
-;                                                ;
-;           Polybar config for my themes         ;
-; 				                 ;
-;                                                ;
-;-------------------------------------------------
-
-
 [colors]
 ;My colors are set from .Xresources to match everything else
 my_background 	= ${xrdb:background}
 my_foreground 	= ${xrdb:foreground}
+my_secondary = ${xrdb:secondary}
 my_color0	= ${xrdb:color0}
 my_color1	= ${xrdb:color1}
 my_color2	= ${xrdb:color2}
@@ -27,7 +20,7 @@ my_color13	= ${xrdb:color13}
 my_color14	= ${xrdb:color14}
 my_color15	= ${xrdb:color15}
 
-[bar/main_bar]
+[bar/main]
 bottom = true
 width = 100%
 height = 32
@@ -55,7 +48,8 @@ module-margin-right = 0
 
 font-0 = Hack:fontformat=truetype:size=9;2
 font-1 = Lato:fontformat=truetype:size=10;2
-font-2 = FontAwesome:fontformat=truetype:size=9;2
+font-2 = Lato:fontformat=truetype:size=9;2
+font-3 = FontAwesome:fontformat=truetype:size=9;2
 
 modules-left = i3 
 modules-center = date
@@ -72,7 +66,7 @@ tray-background = ${colors.my_background}
 
 wm-restack = i3
 
-;override-redirect = true
+#override-redirect = true
 
 [module/i3]
 type = internal/i3
@@ -86,13 +80,15 @@ ws-icon-default = 
 label-unfocused-background = ${colors.my_background}
 #label-unfocused-foreground = ${colors.my_foreground}
 
+label-font = 1
+
 label-mode = %mode%
 label-mode-padding = 2
 label-mode-background = ${colors.my_color11}
 
 label-focused = %index% %icon%
 label-focused-background = ${colors.my_color11}
-label-focused-underline = ${colors.my_color7}
+label-focused-underline = ${colors.my_foreground}
 label-focused-padding = 1
 
 label-unfocused = %index% %icon%
@@ -100,13 +96,13 @@ label-unfocused-padding = 1
 
 label-visible = %index%%index%
 label-visible-underline = ${colors.my_foreground}
-label-visible-padding = 2
+label-visible-padding = 1
 
-label-urgent = %index%
-label-urgent-foreground = ${colors.my_color7}
+label-urgent = %index% %icon%
+label-urgent-foreground = ${colors.my_foreground}
 label-urgent-background = ${colors.my_background}
-label-urgent-underline = ${colors.my_foreground}
-label-urgent-padding = 2
+label-urgent-underline = ${colors.my_secondary}
+label-urgent-padding = 1
 
 [module/date]
 type = internal/date
@@ -124,14 +120,15 @@ click-left = ~/.config/polybar/spotify.sh --togglePlay
 click-right = i3-msg workspace 4
 interval = 1
 format= <label>
-label = %output%
+label = %output:0:50:...%
 label-font = 2
 
 [module/cpu]
 type = internal/cpu
 interval = 0.5
-format = <bar-load>  <label>
-label = %percentage%%
+format = <label> <bar-load> 
+label = %percentage:2%%
+label-font = 1
 bar-load-indicator = 
 bar-load-width = 6
 bar-load-fill = ▐
@@ -141,8 +138,9 @@ bar-load-empty-foreground = #444444
 [module/memory]
 type = internal/memory
 interval = 2
-format = <bar-used>  <label>
-label = %gb_used%
+format = <label> <bar-used> 
+label = %gb_used:8%
+label-font = 1
 bar-used-indicator = 
 bar-used-width = 6
 bar-used-foreground-0 = #55aa55
@@ -176,11 +174,8 @@ label-active-font = 1
 expand-right = false
 format-spacing = 0
 label-open = "  "
-#label-open-foreground = ${colors.power}
 label-close = "  "
-#label-close-foreground = ${colors.power}
 label-separator = "  "
-#label-separator-foreground = ${colors.my_foreground}
 
 menu-0-0 = ""
 menu-0-0-foreground = ${colors.my_color10}
@@ -188,7 +183,7 @@ menu-0-0-exec = i3exit lock
 
 menu-0-1 = ""
 menu-0-1-foreground = ${colors.my_color10}
-menu-0-1-exec = i3exit reboot
+menu-0-1-exec = i3exit logout
 
 menu-0-2 = ""
 menu-0-2-foreground = ${colors.my_color10}
@@ -223,14 +218,14 @@ ramp-capacity-1 = 
 ramp-capacity-2 = 
 ramp-capacity-3 = 
 ramp-capacity-4 = 
-ramp-capacity-foreground = ${colors.my_foreground}
+ramp-capacity-foreground = ${colors.my_secondary}
 
 animation-charging-0 = 
 animation-charging-1 = 
 animation-charging-2 = 
 animation-charging-3 = 
 animation-charging-4 = 
-animation-charging-foreground = ${colors.my_foreground}
+animation-charging-foreground = ${colors.my_secondary}
 animation-charging-framerate = 750
 
 

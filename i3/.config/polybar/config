@@ -23,7 +23,7 @@ my_color15	= ${xrdb:color15}
 [bar/main]
 bottom = true
 width = 100%
-height = 32
+height = 70
 offset-x = 0%
 offset-y = 0%
 radius = 0.0
@@ -32,9 +32,9 @@ fixed-center = true
 separator = "  |  "
 
 background = ${colors.my_background}
-foreground =  ${colors.my_color7}
+foreground =  ${colors.my_foreground}
 
-line-size = 4
+line-size = 8
 line-color = ${colors.my_color4}
 
 border-size = 0
@@ -46,10 +46,10 @@ padding-right = 0
 module-margin-left = 0
 module-margin-right = 0
 
-font-0 = Hack:fontformat=truetype:size=9;2
-font-1 = Lato:fontformat=truetype:size=10;2
-font-2 = Lato:fontformat=truetype:size=9;2
-font-3 = FontAwesome:fontformat=truetype:size=9;2
+font-0 = Hack:fontformat=truetype:size=18;4
+font-1 = Lato:fontformat=truetype:size=20;4
+font-2 = Lato:fontformat=truetype:size=18;4
+font-3 = FontAwesome:fontformat=truetype:size=18;4
 
 modules-left = i3 
 modules-center = date
@@ -73,7 +73,7 @@ type = internal/i3
 
 ws-icon-0 = 1;
 ws-icon-1 = 2;
-ws-icon-2 = 3;
+ws-icon-2 = 3; 
 ws-icon-3 = 4;
 ws-icon-default = 
 
@@ -84,10 +84,10 @@ label-font = 1
 
 label-mode = %mode%
 label-mode-padding = 2
-label-mode-background = ${colors.my_color11}
+label-mode-background = ${colors.my_secondary}
 
 label-focused = %index% %icon%
-label-focused-background = ${colors.my_color11}
+label-focused-background = ${colors.my_secondary}
 label-focused-underline = ${colors.my_foreground}
 label-focused-padding = 1
 
@@ -108,7 +108,7 @@ label-urgent-padding = 1
 type = internal/date
 interval = 0.5
 time = "%A, %d %b %Y  |  %H:%M:%S"
-format-foreground = ${colors.my_color7}
+format-foreground = ${colors.my_foreground}
 label = %date% %time%
 label-font = 2
 
@@ -118,7 +118,7 @@ exec-if = ~/.config/polybar/spotify.sh --title
 exec = ~/.config/polybar/spotify.sh --title
 click-left = ~/.config/polybar/spotify.sh --togglePlay
 click-right = i3-msg workspace 4
-interval = 1
+interval = 0.5
 format= <label>
 label = %output:0:50:...%
 label-font = 2
@@ -127,7 +127,7 @@ label-font = 2
 type = internal/cpu
 interval = 0.5
 format = <label> <bar-load> 
-label = %percentage:2%%
+label = %percentage:3%%
 label-font = 1
 bar-load-indicator = 
 bar-load-width = 6
@@ -143,17 +143,17 @@ label = %gb_used:8%
 label-font = 1
 bar-used-indicator = 
 bar-used-width = 6
-bar-used-foreground-0 = #55aa55
-bar-used-foreground-1 = #557755
-bar-used-foreground-2 = #f5a70a
-bar-used-foreground-3 = #ff5555
-bar-used-foreground-4 = #ff5555
+bar-used-foreground-0 = #6FB548
+bar-used-foreground-1 = #95BF54
+bar-used-foreground-2 = #C2C57B
+bar-used-foreground-3 = #CCB26E
+bar-used-foreground-4 = #D36A59
 bar-used-fill = ▐
 bar-used-empty = ▐
 bar-used-empty-foreground = #444444
 
 [module/volume]
-type = internal/alsa
+type = internal/volume
 format-volume = <ramp-volume> <bar-volume>
 format-muted =  
 ramp-volume-0 = 

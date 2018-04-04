@@ -1,8 +1,8 @@
 [colors]
 ;My colors are set from .Xresources to match everything else
-my_background 	= ${xrdb:background}
+my_background 	= #ee383c4a
 my_foreground 	= ${xrdb:foreground}
-my_secondary = ${xrdb:secondary}
+my_secondary = #dd4b5162
 my_color0	= ${xrdb:color0}
 my_color1	= ${xrdb:color1}
 my_color2	= ${xrdb:color2}
@@ -133,7 +133,7 @@ bar-load-indicator =
 bar-load-width = 6
 bar-load-fill = ▐
 bar-load-empty = ▐
-bar-load-empty-foreground = #444444
+bar-load-empty-foreground = ${colors.my_secondary}
 
 [module/memory]
 type = internal/memory
@@ -150,7 +150,7 @@ bar-used-foreground-3 = #CCB26E
 bar-used-foreground-4 = #D36A59
 bar-used-fill = ▐
 bar-used-empty = ▐
-bar-used-empty-foreground = #444444
+bar-used-empty-foreground = ${colors.my_secondary}
 
 [module/volume]
 type = internal/volume
@@ -166,8 +166,7 @@ bar-volume-fill = 
 bar-volume-fill-font = 3
 bar-volume-empty = 
 bar-volume-empty-font = 3
-bar-volume-empty-foreground = #444444
-
+bar-volume-empty-foreground = ${colors.my_secondary}
 [module/powermenu]
 type = custom/menu
 label-active-font = 1

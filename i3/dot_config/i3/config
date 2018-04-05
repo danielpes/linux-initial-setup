@@ -13,7 +13,7 @@ new_window none
 new_float normal
 
 # Hide borders
-hide_edge_borders smart
+#hide_edge_borders none
 
 # change borders
 bindsym $mod+u border none
@@ -39,7 +39,7 @@ bindsym $mod+Escape kill
 bindsym $mod+apostrophe kill
 
 # start program launcher
-bindsym $mod+space exec --no-startup-id dmenu_recent_aliases -i -fn 'Hack-10' -sb '#4b5162' -nb '#383c4a' -nf '#efefef'
+bindsym $mod+space exec --no-startup-id rofi -show run
 
 # launch categorized menu
 # bindsym $mod+z exec --no-startup-id morc_menu
@@ -113,9 +113,9 @@ bindsym $mod+v split v;exec notify-send 'tile vertically'
 bindsym $mod+b split toggle
 
 # toggle fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
-bindsym $mod+Ctrl+f resize grow width 1000px or 51ppt
-bindsym $mod+Shift+f resize shrink width 1000px or 51ppt
+bindsym $mod+Ctrl+f fullscreen toggle
+bindsym $mod+f resize grow width 5000px or 45ppt
+bindsym $mod+Shift+f resize shrink width 5000px or 45ppt
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+Ctrl+s layout stacking
@@ -238,9 +238,9 @@ for_window [class="Thus"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [class="Xfburn"] floating enable
-for_window [class="Pcmanfm|Nautilus|Thunar|Toplevel|Gnome.*|gucharmap"] floating enable border normal
+for_window [class="Pcmanfm|Nautilus|Thunar|Toplevel|Gnome.*|Gucharmap"] floating enable border normal
 for_window [title="Terminator Preferences"] floating enable border normal
-for_window [class="^.*"] border pixel 0
+for_window [class="^.*"] border pixel 2
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
@@ -345,9 +345,9 @@ mode "$mode_gaps_outer" {
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border
-  client.placeholder      #404552 #404552 #ffffff #000000 
+  client.placeholder      #4b5162 #404552 #ffffff #000000 
 
-  client.background       #404552
+  client.background       #4b5162
 
 #############################
 ### settings for i3-gaps: ###
@@ -367,12 +367,12 @@ gaps outer 0
 
 # Smart borders (draw borders around container only if it is not the only container on this workspace) 
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
-smart_borders on
+smart_borders no_gaps
 
-client.focused #404552 #404552 #ffffff #2e9ef4
-client.focused_inactive #404552 #404552 #ffffff #484e50
-client.unfocused #404552 #404552 #888888 #292d2e
-client.urgent #404552 #404552 #ffffff #900000
+client.focused #4b5162 #404552 #ffffff #2e9ef4
+client.focused_inactive #4b5162 #404552 #ffffff #484e50
+client.unfocused #4b5162 #404552 #888888 #292d2e
+client.urgent #4b5162 #404552 #ffffff #900000
 
 
 # Autostart applications

@@ -3,7 +3,7 @@
 ! Enable the extended coloring options
 rofi.color-enabled: true
 !                  bg             border   separator
-rofi.color-window: argb:dd383c4a, #707880, argb:ee383c4a
+rofi.color-window: argb:bb383c4a, #707880, argb:ee383c4a
 
 !                  bg            fg       bg-alt       hl-bg    hl-fg
 rofi.color-normal: argb:0000000, #efefef, argb:000000, argb:aa4b5162, #efefef
@@ -13,13 +13,15 @@ rofi.color-urgent: argb:0000000, #efefef, argb:000000, argb:aa4b5162, #efefef
 rofi.separator-style: none
 rofi.sidebar-mode: false
 rofi.lines: 3
-rofi.font: Lato Regular 20
+rofi.font: Lato Regular 36
 rofi.bw: 0
 rofi.columns: 1
-rofi.padding: 15
+rofi.padding: 720
 rofi.width: 32
 rofi.fixed-num-lines: true
 rofi.hide-scrollbar: true
 rofi.opacity: 50
-rofi.matching: fuzzy
-rofi.theme-str '#prompt-colon { enabled: false;}'
+rofi.matching: normal
+rofi.theme-str: '#prompt-colon { enabled: false;}'
+rofi.fullscreen: true
+rofi.dpi: 192

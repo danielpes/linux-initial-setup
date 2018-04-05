@@ -1,3 +1,5 @@
 [submodule "i3-dotfiles"]
 	path = i3-dotfiles
 	url = git@github.com:danielpes/i3-dotfiles.git
+	branch = master
+	fetchRecurseSubmodules = true

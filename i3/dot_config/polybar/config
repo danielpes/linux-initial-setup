@@ -29,7 +29,7 @@ offset-y = 0%
 radius = 0.0
 fixed-center = true
 
-separator = "  |  "
+#separator = "    "
 
 background = ${colors.my_background}
 foreground =  ${colors.my_foreground}
@@ -50,13 +50,15 @@ font-0 = Hack:fontformat=truetype:size=18;4
 font-1 = Lato:fontformat=truetype:size=20;4
 font-2 = Lato:fontformat=truetype:size=18;4
 font-3 = FontAwesome:fontformat=truetype:size=18;4
-font-4 = Font Awesome 5 Free:size=18;4
-font-5 = Font Awesome 5 Brands:size=18;5
+font-4 = FontAwesome:fontformat=truetype:size=18;4
+font-5 = Font Awesome 5 Free:size=18;4
+font-6 = Font Awesome 5 Brands:size=18;5
+font-7 = Weather Icons:fontformat=truetype:size=18;4
 
 
-modules-left = i3 
-modules-center = 
-modules-right = spotify volume cpu memory date powermenu
+modules-left = i3 sep1 xwindow
+modules-center = spotify
+modules-right = weather sep3 volume sep3 cpu sep3 memory sep3 date sep3 powermenu
 
 #tray-position = right
 tray-padding = 9
@@ -114,14 +116,20 @@ label-font = 2
 
 [module/spotify]
 type = custom/script
-exec-if = ~/.config/polybar/spotify.sh --title
-exec = ~/.config/polybar/spotify.sh --title
+exec-if = ~/.config/polybar/scripts/spotify.sh --title
+exec = ~/.config/polybar/scripts/spotify.sh --title
 click-left = ~/.config/polybar/spotify.sh --togglePlay
 click-right = i3-msg workspace 4
 interval = 0.5
 format= <label>
-label = %output:0:50:...%
+label = %output:0:42:...%
 label-font = 2
+
+[module/weather]
+type = custom/script
+exec = ~/.config/polybar/scripts/weather.sh
+interval = 600
+label-font = 8
 
 [module/cpu]
 type = internal/cpu
@@ -138,10 +146,10 @@ bar-load-empty-foreground = ${colors.my_secondary}
 [module/memory]
 type = internal/memory
 interval = 2
-format = <label> <bar-used> 
-label = %gb_used:7%
+format = <label> <bar-used>
+label = %gb_used%
 label-font = 1
-bar-used-indicator = 
+bar-used-indicator =
 bar-used-width = 6
 bar-used-foreground-0 = #6FB548
 bar-used-foreground-1 = #95BF54
@@ -245,7 +253,21 @@ margin-bottom = 5
 
 [module/xwindow]
 type = internal/xwindow
-label = %title:0:120:...%
-label-padding = 2
-;label-underline = ${colors.my_color7}
-label-foreground = ${colors.my_color7}
+label-font = 2
+label = %title:0:42:...%
+label-padding = 1
+#format-background = ${colors.my_secondary}
+#format-underline = ${colors.my_foreground}
+
+[module/sep1]
+type = custom/text
+content = " "
+
+[module/sep2]
+type = custom/text
+content = "  "
+
+[module/sep3]
+type = custom/text
+content = "   "
+

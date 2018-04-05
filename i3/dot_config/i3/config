@@ -397,11 +397,10 @@ exec --no-startup-id xautolock -time 10 -locker blurlock
 exec_always --no-startup-id fix_xcursor
 
 # Set wallpaper
-exec --no-startup-id nitrogen --set-scaled ~/Pictures/Grayscale.png
+exec_always --no-startup-id ./scripts/unsplash-wallpaper.sh
 
 # Disable caps-lock
 exec --no-startup-id setxkbmap -option caps:none
 
 # Polybar
 exec_always --no-startup-id "killall polybar;polybar -r main"
-

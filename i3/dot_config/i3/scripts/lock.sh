@@ -1,5 +1,5 @@
-
 #!/bin/bash
+#credits (with some modifications): https://github.com/rokyfox/i3ConfigFiles
 
 cd "/home/daniel/.i3/"
 
